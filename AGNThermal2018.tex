@@ -72,7 +72,7 @@ cooling that preserves the entropy profile
 
 \textbullet AGN feedback in other simualtions
 
-\textbullet Paper outline
+\textbullet Paper outline/roadmap
 
 Galaxy clusters have predictable entropy profiles whose shape (although not
 necessarily normalization) are mass-independent.
@@ -98,9 +98,9 @@ analytical work by Voit et. al.
 \subsection{AGN Feedback}
 \textbullet Energy from the AGN is deposited as purely thermal energy in a sphere
 encompassing the cluster.
-
 \begin{equation}
-	\dot{e}(r) = \left( \frac{r}{r_c} \right )^{-\alpha} \exp { -r/r_c}
+	\dot{e}(r) \propto r^{-\alpha}
+	%\dot{e}(r) = \left( \frac{r}{r_c} \right )^{-\alpha} \exp { -r/r_c}
 \end{equation}
 
 \textbullet Details of feedback: smoothing length, cut off radius, scaling factor
@@ -117,9 +117,6 @@ $2.9$ in $0.1$ increments and $2.5$ to $2.7$ in $0.05$ increments.
 \end{equation}
 where $\theta$ is the polar angle.
 
-\textbullet Each simulation is run for $8 \text{Gyr}$, or appoximately $4$ sound crossing
-times for the cluster. 
-
 
 Energy from AGN feedback is deposited thermally in a sphere encompassing the
 cluster. The deposited energy follows a power law:
@@ -134,11 +131,15 @@ The thermal energy deposited in the cluster is scaled to exactly offset the
 total cooling within the cluster, thus maintaining overall energy balance.
 Simulations were run with a range of radial heating distributions ranging from
 $\alpha = 2.0$ to 2.9. 
-All simulations used the adaptive mesh code \texttt{Enzo} \cite{bryan_enzo:_2014} using AGN feedback algorithms modified from
+All simulations used the adaptive mesh code \texttt{Enzo}
+\cite{bryan_enzo:_2014} using AGN feedback algorithms modified from
 \cite{meece_jr_agn_2016,meece_triggering_2017}.
 
 \subsection{Initial Conditions}
 \label{sec:initial_conditions}
+\textbullet Each simulation is run for $8 \text{Gyr}$, or appoximately $4$ sound crossing
+times for the cluster. 
+
 Simulations are initialized in a Perseus-like configuration, in the manner
 of Meece \cite{meece_triggering_2017} and Li et al.\ \cite{li_cooling_2015} 
 
