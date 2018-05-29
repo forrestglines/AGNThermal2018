@@ -37,6 +37,10 @@
 \newcommand{\blue}[1]{\textcolor{blue}{#1}}
 \newcommand{\green}[1]{\textcolor{green}{#1}}
 
+\def\FG#1{{\textcolor{ForestGreen}{\textbf{\textit{ FG: #1}}}}}
+\newcommand{\ENZO}{\textsc{ENZO}\xspace}
+
+
 \shorttitle{AGN Thermal Heating} 
 \shortauthors{F. glines et al.}
 
@@ -62,15 +66,47 @@
 \section{Introduction}
 \label{sec:introduction}
 
+Most galaxy clusters in the universe have active galactic nuclei (AGN) at the
+center of the cluster. These AGN play a significant role in the evolution of
+the cluster, affecting the structure, quenching star formation, etc. \FG{References}
 
-\textbullet Cool-core problem and current resolution?
+%\textbullet Cool-core problem and current resolution?
+Feedback from AGN into the surrounding galaxy cluster has also been accepted as
+the primary mechanism behind keeing cool-core clusters thermally stable in the
+cool-core problem. Many galaxy clusters in the universe have been shown through
+x-ray observations to have cooling times much shorter than the free-fall time.
+Supernove, star formation, and other effects are insufficent to heat the
+cluster enough to prevent a cooling catastrophe and collapse. AGN, however, can
+output enough energy through thermal and kinetic feedback to prevent the
+collapse. Many recent simulations have shown that AGN activity triggered
+through a number of mechanisms, including cold gas, can raise the core entropy
+and prevent cooling.
+
+\textbullet Constraints on AGN Feedback - self regulating?
 
 \textbullet Elaborate on Voit analytical work - the toy model - a heating curve balancing
 cooling that preserves the entropy profile
 
-\textbullet Elaborate on Greg's work?
+In cosmological simulations, AGN feedback is modeled using a subgrid process.
+Due to the short timescale and small spatial scale evolution of the SMBH
+comprising the AGN compared to the larger galaxy cluster, it is impossible to
+coevolve the cluster and AGN simultaneously.
 
 \textbullet AGN feedback in other simualtions
+
+Much recent work has been done to better physically motivate these subgrid
+models to produce reasonable galaxy clusters. Triggering mechanisms explored
+include ... The feedback back mechanism has also had a great effect on the
+evolution of the cluster. Previous work by \cite{meece_jr_agn_2016} found that
+for feedback near the cluster core a non zero kinetic feedback component was
+needed to have a self regulating AGN; thermal heating alone in th e immediate
+radius around the AGN was insufficient to keep the cluster thermally stable;
+
+\textbullet \FG{Elaborate on Greg's work?}
+
+This work  builds on \cite{meece_jr_agn_2016}, simplifying the feedback
+mechanism by extending the radius of feedback to a much larger radius.
+
 
 \textbullet Paper outline/roadmap
 
@@ -96,27 +132,43 @@ analytical work by Voit et. al.
 \label{sec:methodology}
 
 \subsection{AGN Feedback}
-\textbullet Energy from the AGN is deposited as purely thermal energy in a sphere
-encompassing the cluster.
+\textbullet Energy from the AGN is deposited as purely thermal energy in a
+sphere encompassing the cluster.  The thermal feedback follows a power law with
+radius, so that in general, $\dot{e} (r) \propto r^{-\alpha}$. However, this
+led to several numerical challenges, including a feedback that asymtopes to
+infinity at the AGN and a sharp cutoff in energy at the boundaries of the
+simulation. These were overcome by adding a minimum radius smoothing length
+$r_{\text{min}} = 1 \text{ kpc}$ (comprising \FG{FIXME} cells on the highest
+refinement) and an exponential decay at a cutoff radius $r_c = 1 \text{ Mpc}.$
+The full form of the feedback in $\text{ erg} \text{ s}^{-1} \text{ cm}^{-3}$ follows
 \begin{equation}
-	\dot{e}(r) \propto r^{-\alpha}
-	%\dot{e}(r) = \left( \frac{r}{r_c} \right )^{-\alpha} \exp { -r/r_c}
+  \dot{e}(r) = \frac{\dot{E}(t)}{A}
+  \left\{\begin{matrix}
+    \left( r_{\text{min}}/r_c \right )^{-\alpha} \exp {\left ( -r_{\text{min}}/r_c \right )} & , &r <= r_{\text{min}} \\
+    \left( r /r_c \right )^{-\alpha} \exp { \left ( -r/r_c \right )}                         & , &r >  r_{\text{min}}
+  \end{matrix}\right.,
 \end{equation}
+where $\dot{E}(t)$ is the total energy feedback from the energy at time $t$ and
+$A$ is a scalar to normalize the feedback which is just the integral of the
+feedback function over the entire feedback radius. Higher values of $\alpha$
+correspond to more centralized feedback around the AGN. Without the inner
+smoothing length, and $\alpha >= 3$ is unnormalizable, corresponding to
+infinitie energy feedback at the origin.
 
-\textbullet Details of feedback: smoothing length, cut off radius, scaling factor
+The total AGN heating rate $\dot E(t)$ tracks the total cooling rate within the
+cluster, which is updated every $10 \text{ Myr}$ using \texttt{yt} to compute the total
+xray cooling.
 
-Using a cutoff radius $r_c= 1\text{ Mpc}.$ In order to avoid the asymptote at
-the origin, the radius $r$ is smoothed to a minimum radius of $1\text{ kpc}$
-The total AGN heat tracks the cooling rate, which is updated every $10
-\text{Myr}$ We use a different $\alpha$ for each run, sampling from $2.0$ to
-$2.9$ in $0.1$ increments and $2.5$ to $2.7$ in $0.05$ increments.
-
-\textbullet Conic feedback
+\textbullet Conic feedback. When the spherically symmetric feedback models
+failed to maintain thermally stable galaxy clusters, we also investigated an
+additional feedback model with a conic feedback. The conic feedback for $r >
+r_{\text{min}}$followed
 \begin{equation}
 	\dot{e}(\theta) \propto \cos^2 \theta 
 \end{equation}
-where $\theta$ is the polar angle.
-
+where $\theta$ is the polar angle. Within $r <= r_{\text{min}}$, however, the
+conic dependance was removed, as it would otherwise produce disontinuities
+across the AGN. The normalization factor $A$ was also updated accordingly.
 
 Energy from AGN feedback is deposited thermally in a sphere encompassing the
 cluster. The deposited energy follows a power law:
@@ -132,8 +184,12 @@ total cooling within the cluster, thus maintaining overall energy balance.
 Simulations were run with a range of radial heating distributions ranging from
 $\alpha = 2.0$ to 2.9. 
 All simulations used the adaptive mesh code \texttt{Enzo}
-\cite{bryan_enzo:_2014} using AGN feedback algorithms modified from
+\cite{bryan_enzo_2014-1} using AGN feedback algorithms modified from
 \cite{meece_jr_agn_2016,meece_triggering_2017}.
+
+
+We use a different $\alpha$ for each run, sampling from $2.0$ to
+$2.9$ in $0.1$ increments and $2.5$ to $2.7$ in $0.05$ increments.
 
 \subsection{Initial Conditions}
 \label{sec:initial_conditions}
@@ -145,23 +201,25 @@ of Meece \cite{meece_triggering_2017} and Li et al.\ \cite{li_cooling_2015}
 
 \section{Results}
 
-\textbullet Feedback failed to self regulate
+\textbullet Feedback failed to self regulate nor preserve thermal stability.
 
-\textbullet Core entropy increases with $\alpha$
+\textbullet Core entropy increases with $\alpha$.
 
-\textbullet Surface brightness decreases with $\alpha$
+\textbullet Surface brightness decreases with $\alpha$.
 
-\textbullet <More results from conic feedback>
+\textbullet Conic feedback collapses faster with more regularity.
+
+\textbullet Collimated outflows with conic feedback.
 
 \label{sec:results}
 \begin{figure}
 	\begin{center}
-		\includegraphics[width=0.49\linewidth]{figures/entropyVradius.eps}
-		\includegraphics[width=0.49\linewidth]{figures/entropyValpha.eps}
+		\includegraphics[width=0.49\linewidth]{figures/spherical/entropyVradius.eps}
+		\includegraphics[width=0.49\linewidth]{figures/spherical/entropyValpha.eps}
 	\end{center}
 	\caption{
 		\textbf{Left:}  Mean entropy as a function of spherical radius from
-	several representative simulations.  \textbf{Right:} Mean cluster core
+	several representative simulations with spherical feedback.  \textbf{Right:} Mean cluster core
 	entropy calculated within impact parameters ranging from $R = 2^0 - 2^4$ proper
 	kpc for the same set of simulations, as a function of $\alpha$.  In both
 	panels, entropy is calculated by the mass-weighted temperature and the
@@ -171,12 +229,12 @@ of Meece \cite{meece_triggering_2017} and Li et al.\ \cite{li_cooling_2015}
 
 \begin{figure}
 	\begin{center}
-		\includegraphics[width=0.49\linewidth]{figures/surfaceBrightnessVradius.eps}
-		\includegraphics[width=0.49\linewidth]{figures/surfaceBrightnessValpha.eps}
+		\includegraphics[width=0.49\linewidth]{figures/spherical/surfaceBrightnessVradius.eps}
+		\includegraphics[width=0.49\linewidth]{figures/spherical/surfaceBrightnessValpha.eps}
 	\end{center}
 	\caption{
 		\textbf{Left:} Mean simulated X-ray surface brightness in the $0.5
-	-2.0 \text{ keV}$ band as a function of observing radius. \textbf{Right:}
+	-2.0 \text{ keV}$ band as a function of observing radius with spherical feedback. \textbf{Right:}
 	Mean surface brightness of cores of radii $R = 2^0 - 2^4$ proper kpc from
 	the same simulations as a function of $\alpha$. All data is taken after 700
 	Myr of simulation evolution.
@@ -187,12 +245,34 @@ of Meece \cite{meece_triggering_2017} and Li et al.\ \cite{li_cooling_2015}
 
 \begin{figure}
 	\begin{center}
-		\includegraphics[width=0.49\linewidth]{figures/entropyVradius.eps}
-		\includegraphics[width=0.49\linewidth]{figures/entropyValpha.eps}
+		\includegraphics[width=0.49\linewidth]{figures/spherical/{alpha2.2_entropySlice}.png}
+		\includegraphics[width=0.49\linewidth]{figures/spherical/{alpha2.8_entropySlice}.png}
+		\includegraphics[width=0.49\linewidth]{figures/spherical/{alpha2.2_densitySlice}.png}
+		\includegraphics[width=0.49\linewidth]{figures/spherical/{alpha2.8_densitySlice}.png}
 	\end{center}
 	\caption{
-		\textbf{Left:}  Mean entropy as a function of spherical radius from
-	several representative simulations.  \textbf{Right:} Mean cluster core
+    Entropy and density slices through the center of the the $\alpha=2.2$ and
+    $\alpha=2.8$ simulations with spherical feedback at $t=200\text{ Myr}$ and $t=1000\text{ Myr}$
+    respectively.
+}
+\end{figure}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.9\linewidth]{figures/spherical/avgCoreEntropies.eps}
+  \end{center}
+  \caption{Mean core entropy on the inner $10 \text{ kpc}$ as
+  a function of time from several representative simulations with spherical feedback.  evolution.}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.49\linewidth]{figures/conic/entropyVradius.eps}
+		\includegraphics[width=0.49\linewidth]{figures/conic/entropyValpha.eps}
+	\end{center}
+	\caption{
+		\textbf{Left:}  Mean entropy as a function of conic radius from
+	several representative simulations with conic feedback.  \textbf{Right:} Mean cluster core
 	entropy calculated within impact parameters ranging from $R = 2^0 - 2^4$ proper
 	kpc for the same set of simulations, as a function of $\alpha$.  In both
 	panels, entropy is calculated by the mass-weighted temperature and the
@@ -201,11 +281,41 @@ of Meece \cite{meece_triggering_2017} and Li et al.\ \cite{li_cooling_2015}
 \end{figure}
 
 \begin{figure}
+	\begin{center}
+		\includegraphics[width=0.49\linewidth]{figures/conic/surfaceBrightnessVradius.eps}
+		\includegraphics[width=0.49\linewidth]{figures/conic/surfaceBrightnessValpha.eps}
+	\end{center}
+	\caption{
+		\textbf{Left:} Mean simulated X-ray surface brightness in the $0.5
+	-2.0 \text{ keV}$ band as a function of observing radius with conic feedback. \textbf{Right:}
+	Mean surface brightness of cores of radii $R = 2^0 - 2^4$ proper kpc from
+	the same simulations as a function of $\alpha$. All data is taken after 700
+	Myr of simulation evolution.
+	%However, lower $\alpha$ simulations progress to cooling catastrophe
+	%sooner. Here the $\alpha=2.2$ simulation is going through a collapse.
+}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.49\linewidth]{figures/conic/{alpha2.2_entropySlice}.png}
+		\includegraphics[width=0.49\linewidth]{figures/conic/{alpha2.8_entropySlice}.png}
+		\includegraphics[width=0.49\linewidth]{figures/conic/{alpha2.2_densitySlice}.png}
+		\includegraphics[width=0.49\linewidth]{figures/conic/{alpha2.8_densitySlice}.png}
+	\end{center}
+	\caption{
+    Entropy and density slices through the center of the the $\alpha=2.2$ and
+    $\alpha=2.8$ simulations with conic feedback at $t=200\text{ Myr}$ and $t=1000\text{ Myr}$
+    respectively.
+}
+\end{figure}
+
+\begin{figure}
   \begin{center}
-    \includegraphics[width=0.9\linewidth]{figures/core_vw_entropy.png}
+    \includegraphics[width=0.9\linewidth]{figures/conic/avgCoreEntropies.eps}
   \end{center}
   \caption{Mean core entropy on the inner $10 \text{ kpc}$ as
-  a function of time from several representative simulations.  evolution.}
+  a function of time from several representative simulations with conic feedback.  evolution.}
 \end{figure}
 
 \begin{figure}
