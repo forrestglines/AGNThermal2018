@@ -201,7 +201,18 @@ of Meece \cite{meece_triggering_2017} and Li et al.\ \cite{li_cooling_2015}
 
 \section{Results}
 
-\textbullet Feedback failed to self regulate nor preserve thermal stability.
+\textbullet Feedback failed to self regulate nor preserve thermal stability. In
+all cases the core entropy slowly dropped over time until a clump of cold gas
+formed, at which point each simulation then went through a cooling collapse. As
+the total cooling in the cluster spiked, the AGN activity also spiked. If the
+simulation was able to continue through the collapse and AGN outburst, the
+subsequent cluster was left with an unphysically high entropy profile.  
+
+Figures \label{fig:sphericalCoreEntropies} and \label{fig:conicCoreEntropies}
+show the average core entropies of several simulations with spherical and conic
+feedback repectively. More centrally concentrated heating delayed the collapse,
+although these also produced unphysical entropy profiles.
+
 
 \textbullet Core entropy increases with $\alpha$.
 
@@ -218,6 +229,7 @@ of Meece \cite{meece_triggering_2017} and Li et al.\ \cite{li_cooling_2015}
 		\includegraphics[width=0.49\linewidth]{figures/spherical/entropyValpha.eps}
 	\end{center}
 	\caption{
+    \label{fig:sphericalEntropy}
 		\textbf{Left:}  Mean entropy as a function of spherical radius from
 	several representative simulations with spherical feedback.  \textbf{Right:} Mean cluster core
 	entropy calculated within impact parameters ranging from $R = 2^0 - 2^4$ proper
@@ -233,6 +245,7 @@ of Meece \cite{meece_triggering_2017} and Li et al.\ \cite{li_cooling_2015}
 		\includegraphics[width=0.49\linewidth]{figures/spherical/surfaceBrightnessValpha.eps}
 	\end{center}
 	\caption{
+    \label{fig:sphericalSurfaceBrightness}
 		\textbf{Left:} Mean simulated X-ray surface brightness in the $0.5
 	-2.0 \text{ keV}$ band as a function of observing radius with spherical feedback. \textbf{Right:}
 	Mean surface brightness of cores of radii $R = 2^0 - 2^4$ proper kpc from
@@ -251,6 +264,7 @@ of Meece \cite{meece_triggering_2017} and Li et al.\ \cite{li_cooling_2015}
 		\includegraphics[width=0.49\linewidth]{figures/spherical/{alpha2.8_densitySlice}.png}
 	\end{center}
 	\caption{
+    \label{fig:sphericalSlices}
     Entropy and density slices through the center of the the $\alpha=2.2$ and
     $\alpha=2.8$ simulations with spherical feedback at $t=200\text{ Myr}$ and $t=1000\text{ Myr}$
     respectively.
@@ -259,9 +273,12 @@ of Meece \cite{meece_triggering_2017} and Li et al.\ \cite{li_cooling_2015}
 
 \begin{figure}
   \begin{center}
-    \includegraphics[width=0.9\linewidth]{figures/spherical/avgCoreEntropies.eps}
+    %\includegraphics[width=0.9\linewidth]{figures/spherical/avgCoreEntropies.eps}
+    \includegraphics[width=3.5in]{figures/spherical/avgCoreEntropies.eps}
   \end{center}
-  \caption{Mean core entropy on the inner $10 \text{ kpc}$ as
+  \caption{
+    \label{fig:sphericalCoreEntropies}
+    Mean core entropy on the inner $10 \text{ kpc}$ as
   a function of time from several representative simulations with spherical feedback.  evolution.}
 \end{figure}
 
@@ -271,6 +288,7 @@ of Meece \cite{meece_triggering_2017} and Li et al.\ \cite{li_cooling_2015}
 		\includegraphics[width=0.49\linewidth]{figures/conic/entropyValpha.eps}
 	\end{center}
 	\caption{
+    \label{fig:conicEntropy}
 		\textbf{Left:}  Mean entropy as a function of conic radius from
 	several representative simulations with conic feedback.  \textbf{Right:} Mean cluster core
 	entropy calculated within impact parameters ranging from $R = 2^0 - 2^4$ proper
@@ -286,6 +304,7 @@ of Meece \cite{meece_triggering_2017} and Li et al.\ \cite{li_cooling_2015}
 		\includegraphics[width=0.49\linewidth]{figures/conic/surfaceBrightnessValpha.eps}
 	\end{center}
 	\caption{
+    \label{fig:conicSurfaceBrightness}
 		\textbf{Left:} Mean simulated X-ray surface brightness in the $0.5
 	-2.0 \text{ keV}$ band as a function of observing radius with conic feedback. \textbf{Right:}
 	Mean surface brightness of cores of radii $R = 2^0 - 2^4$ proper kpc from
@@ -304,6 +323,7 @@ of Meece \cite{meece_triggering_2017} and Li et al.\ \cite{li_cooling_2015}
 		\includegraphics[width=0.49\linewidth]{figures/conic/{alpha2.8_densitySlice}.png}
 	\end{center}
 	\caption{
+    \label{fig:conicSlices}
     Entropy and density slices through the center of the the $\alpha=2.2$ and
     $\alpha=2.8$ simulations with conic feedback at $t=200\text{ Myr}$ and $t=1000\text{ Myr}$
     respectively.
@@ -314,7 +334,9 @@ of Meece \cite{meece_triggering_2017} and Li et al.\ \cite{li_cooling_2015}
   \begin{center}
     \includegraphics[width=0.9\linewidth]{figures/conic/avgCoreEntropies.eps}
   \end{center}
-  \caption{Mean core entropy on the inner $10 \text{ kpc}$ as
+  \caption{
+    \label{fig:conicCoreEntropies}
+    Mean core entropy on the inner $10 \text{ kpc}$ as
   a function of time from several representative simulations with conic feedback.  evolution.}
 \end{figure}
 
