@@ -12,7 +12,7 @@ dvi: $(NAME).tex
 	$(LATEX) $(NAME) || true 
 	$(LATEX) $(NAME)
 
-$(NAME).pdf: $(NAME).tex
+$(NAME).pdf: $(NAME).tex $(NAME).bib figures/*.pdf figures/*.eps figures/*.png
 	$(LATEX) $(NAME) || true
 	bibtex $(NAME)
 	$(LATEX) $(NAME) || true 
