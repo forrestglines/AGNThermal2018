@@ -60,7 +60,6 @@
 \label{firstpage}
 
 \begin{abstract}
-  \FG{Place holder abstract:}
   Observations from the last decade have revealed the existence of cool-core
   clusters, galaxy clusters with a cooling time  much shorter than the
   dynamical time. Recent work suggests that clusters may be thermally stable
@@ -76,9 +75,10 @@
   thermal feedback was set equal to the total rate of cooling in the cluster.
   Thermal feedback with a conic angular dependence was also explored.  However,
   the purely thermal feedback was not enough to achieve thermal stability and
-  each simulation collapsed due to overcooling. These simulation results
-  support previous work showing that kinetic feedback through a jet in addition
-  to thermal feedback is necessary for self-regulating AGN activity. 
+  each simulation collapsed due to over-cooling. Simulation results are also
+  compared to entropy profiles from the ACCEPT dataset. For this comparison,
+  the simulations with highly centralized feedback produced centrally peaked
+  entropy profiles in contrast to the isentropic core in observational data.
 \end{abstract}
 
 \keywords{}
@@ -93,16 +93,16 @@ Active galactic nuclei (AGN,) the super massive black holes at the center of
 galaxy clusters, are the current most accepted theory for the explanation of
 cool-core (CC) clusters, galaxy clusters with a peaked X-ray surface
 brightness.  The surface brightness of CC clusters indicate that they are
-radiating away large amounts of energy away quckly enough that they should have
+radiating away large amounts of energy away quickly enough that they should have
 cooling times on the order of 10's of millions of years. This rapid cooling
 should lead to the condensation of cold clumps of gas within the clusters
 leading to star formation rates much greater than what is observed. They should
 collapse quickly within a couple million years, however CC clusters have
 lifetimes greater than billions of years and constitute roughly half the
-observed galaxy clusters in the universe. This set of problems is refered to
+observed galaxy clusters in the universe. This set of problems is referred to
 collectively as the "cooling catastrophe." Since CC cluster are common and
 appear to be stable for at least billions of years, some mechanism must be
-counteracting the cooling by heating up the core of the cluster and quencing
+counteracting the cooling by heating up the core of the cluster and quenching
 star formation.
 
 Many sources of heating have been explored, including galaxy cluster mergers,
@@ -113,9 +113,9 @@ of heating closely balances the cooling even on short time scales, suggesting a
 tight coupling between the heating and cooling. Work beginning with
 \citep{gaspari_dance_2011} and later by \citep{li_cooling_2015} and
 \citep{meece_triggering_2017} demonstrated self-regulating AGN in hydrodynamic
-simulations of idealized galaxy clusters. All of the simultions used either or
-both cold-gas and bondi accretion triggered feedback through thermal deposition
-around the AGN and bipolar ouflows from the AGN. Many parameters of this model
+simulations of idealized galaxy clusters. All of the simulations used either or
+both cold-gas and Bondi accretion triggered feedback through thermal deposition
+around the AGN and bipolar outflows from the AGN. Many parameters of this model
 have been explored, although there is unified agreement for the need of kinetic
 outflows from AGN \cite{meece_jr_agn_2016,meece_triggering_2017}. These AGN
 regulated the cooling and formation of cold gas within the cluster as well as
@@ -128,14 +128,14 @@ previous observations
 \cite{voit_global_2017,gaspari_raining_2017,gaspari_unifying_2017}. The AGN
 sits in the middle of a $R \approx 100 \text{ kpc}$ isentropic, thermally and
 convectively unstable core of multiphase gas at the center of the galaxy
-cluster. Cold clumps of gas condense out of multiphase region and precipate
+cluster. Cold clumps of gas condense out of multiphase region and precipitate
 onto the black hole. The accretion of cold gas onto the AGN triggers feedback
 through thermal heating around the AGN and kinetic outflows on a larger scale
 away from the AGN. This feedback maintains the isentropic core and ejects cold
 clumps of gas into the power-law region of the entropy profile where
-condensation and overcooling is suppressed. Through cold gas accretion the AGN
+condensation and over-cooling is suppressed. Through cold gas accretion the AGN
 heating is tightly coupled to the cooling rate while the kinetic outflows
-disrupt overcooling in the cluster.
+disrupt over-cooling in the cluster.
 
 However, this model is based on hydrodynamic simulations using simplified AGN
 feedback while in reality AGN feedback and particularly how the energy
@@ -153,7 +153,7 @@ in cool-core clusters,
 
 %thermal conduction \cite{ruszkowski_galaxy_2011}, %Don't understand this one
 \begin{comment}
-CR injection through collimated AGN jets, diperse through streaming, and
+CR injection through collimated AGN jets, disperse through streaming, and
 interact with ICM through hadronic, Coulomb, streaming instability
 \cite{heatingruszkowski_cosmic-ray_2017}
 \end{comment}
@@ -173,11 +173,11 @@ Rather than explore the details of the AGN feedback, this work attempts to
 further simplify the AGN feedback in order to probe the theoretical model. We
 abstract the AGN feedback as just thermal heating set equal to the total
 cooling within the galaxy cluster. We explore a power-law radial dependence to
-deposit the right amount of energy in each part of the cluster to acheive
+deposit the right amount of energy in each part of the cluster to achieve
 thermal stability with the initial entropy profile. Following
 \citep{voit_global_2017},  the heating needs to exceed the cooling within the
-inner core and at large radui, but for the cooling to exceed the heating at
-intermediate radui where the entropy profile switches from isentropic to a
+inner core and at large radii, but for the cooling to exceed the heating at
+intermediate radii where the entropy profile switches from isentropic to a
 power-low. The multiphase gas should form in the isentropic region, in which
 cold clumps of gas will condense. The heating in the center pushes these
 clumps out of the core.
@@ -193,7 +193,7 @@ offsets the cooling and acts on timescales comparable to the cooling time.
 Given a variety of physical considerations, the primary heating source is
 largely accepted to be active galactic nuclei (AGN).  What is not
 well-understood, however, is the manner in which AGN deposit energy into the
-ICM.   \textbf{The goal of this work} is to constrain the radial dependence of
+ICM. The goal of this work is to constrain the radial dependence of
 the AGN energy injection by comparing a simplified model of AGN heating with
 key X-ray observable quantities. 
 
@@ -331,16 +331,16 @@ We ran several simulations of idealized galaxy clusters with a simplified AGN
 heating model using the cosmology code \texttt{Enzo} \cite{bryan_enzo_2014-1}.
 We used the ZEUS solver for hydrodynamics \cite{stone_zeus-2d_1992}, due to
 it's robustness to evolve through discontinuities in the fluid around the AGN
-with sharply peaked thermal injection. Tablulated cooling was used to model
+with sharply peaked thermal injection. Tabulated cooling was used to model
 radiative cooling following \citep{schure_new_2009-2}, assuming a metallicity
 of half the solar metallicity. The cooling table has a temperature of $10^4
 \text{ K}$, however any processes below this temperature will take place on
 smaller scale than our spatial resolution. We used a fixed NFW profile for the
-gravitations potential and ignored self-gravity.  Cosmological expansion was
+gravitational potential and ignored self-gravity.  Cosmological expansion was
 also ignored.
 
 The simulations were run on a $3.2 \text{ Mpc}$ cube with $64^3$ cells in the
-base grid of the AMR heirachry with a maximum of $8$ levels of refinement,
+base grid of the AMR hierarchy with a maximum of $8$ levels of refinement,
 making the minimum cell size approximately $195 \text{ pc}$. The mesh was
 refined at high gradients in the fluid and high baryon density. Additionally, a $4 \text{
   kpc}$ cube grid centered on the AGN was fixed at the maximum level of
@@ -361,7 +361,7 @@ profile from \citep{churazov_xmm-newton_2004} and
 \citep{vikhlinin_chandra_2006} and slightly modified electron number densities
 following \citep{mathews_heating_2006}. The initial pressure was computed from
 the temperature and density assuming an ideal gas with $\gamma=5/3$. The mass
-giving the fixed gravitiational potential has two components: an NFW halo
+giving the fixed gravitational potential has two components: an NFW halo
 profile and a BCG with a mass profile both following
 \citep{li_simulating_2012}, which includes both dark matter and baryonic matter
 and mimics observations of the Perseus Cluster. The entropy profile of the gas
@@ -390,7 +390,7 @@ deposited as purely thermal energy in a sphere encompassing the cluster, with
 the total heating set equal to the total cooling in the cluster. The thermal
 feedback follows a power law with radius, so that in general, $\dot{e} (r)
 \propto r^{-\alpha}$. However, this led to several numerical issues, including
-a feedback that asymtopes to infinity at the AGN and a sharp cutoff in energy
+a feedback that asymptotes to infinity at the AGN and a sharp cutoff in energy
 at the boundaries of the simulation. These were overcome by adding a minimum
 radius smoothing length $r_{\text{min}} = 1 \text{ kpc}$ (comprising 5 cells in
 radius on the highest refinement) and an exponential decay at a cutoff radius
@@ -407,7 +407,7 @@ where $\dot{E}(t)$ is the total energy feedback from the energy at time $t$ and
 $A$ is a scalar to normalize the feedback which is just the integral of the
 feedback function over the entire feedback radius. Higher values of $\alpha$
 correspond to more centralized feedback around the AGN. Without the inner
-smoothing length, and $\alpha >= 3$ is unnormalizable, corresponding to
+smoothing length, $\alpha >= 3$ is not normalizable, corresponding to
 infinite energy feedback at the origin.
 
 The total AGN heating rate $\dot E(t)$ is set to the total cooling rate within
@@ -415,7 +415,7 @@ the cluster. For simplicity, the heating rate is updated every $10 \text{ Myr}$
 using \texttt{yt} to compute the total cooling. Although the cooling rate
 increases exponentially up through the cooling collapse, the increase is slow
 enough so that the heating rate does not fall behind the true cooling rate by
-more than $1\%$.
+more than a few percent.
 
 We also investigated a conic feedback when the spherically symmetric feedback
 models failed to maintain thermally stable galaxy clusters. Outside of the
@@ -451,7 +451,7 @@ Feedback Model & $\alpha$'s explored \\
 
 The AGN feedback algorithm used in this work relied heavily and upon and were
 modified from \citep{meece_jr_agn_2016,meece_triggering_2017}, using the active
-particle framework built in \citep{};
+particle framework developed by Nathan Goldbaum at NCSA.
 
 \section{Results}
 \label{sec:results}
@@ -482,7 +482,7 @@ the mean entropy of the inner $10 \text{ kpc}$ core fell over time, eventually
 leading to a cooling driven collapse (fig. \ref{fig:avgCoreEntropies}.) Each
 simulation formed a cold clump of gas around the core of the cluster (fig.
 \ref{fig:phasePlots}) which began run away cooling and a spike in AGN activity
-to match the cooling (fig. \ref{fig:agnHeating}). Most simulations halted due
+to match the cooling. Most simulations halted due
 to hydrodynamics errors during this spike in feedback but a random selection of
 simulations managed to evolve through the collapse. However, these simulations
 had raised entropy profiles post-collapse which do not match observed entropy
@@ -492,14 +492,14 @@ profiles of CC clusters.
 \label{sec:formation_of_cold_gas}
 
 In all cases with purely thermal heating, a cold clump of gas eventually formed
-near the center of the cluster. Fig \ref{fig:phasePlots} includes entropy and
+near the center of the cluster. Fig. \ref{fig:phasePlots} includes entropy and
 cooling rate versus radius phase plots of the clusters at $t=50 \text{ Myr}$
 (an arbitrary time step,) when the cold phase gas first appears in the
 simulation, and at the final step when the either the simulation has reached
 $t=800 \text{ Myr}$ or the hydrodynamics solver has failed. The formation of
 the cold clump begins with a spreading of the entropy distribution at the
 radius where the median entropy 
-%and ratio of cooling time to freefall time
+%and ratio of cooling time to free fall time
 is minimized. Although the initial entropy profile has an isentropic core, as
 do observations, the centralized thermal feedback causes the core entropy to
 peak, leading to a minimal entropy region outside the core. Due to higher
@@ -560,7 +560,7 @@ causing the mean core entropy to also spike to unphysically high entropies.
 High values of $\alpha$, or more centrally peaked feedback, maintained a higher
 core entropy for a longer period of time. Initially the simulation is somewhat
 stable, however cooling gas on the outskirts of the core lowers the mean core
-entropy of the inner $10 \text{ kpc}$ (see fig. \ref{fig:phasePlots}.  The
+entropy of the inner $10 \text{ kpc}$ (see fig. \ref{fig:phasePlots}.)  The
 conic feedback was less efficient at maintaining core entropy. In all cases,
 the conic feedback led to a quicker collapse. No quasi-stability was shown for
 high values of $\alpha$ with conic feedback.
@@ -582,24 +582,25 @@ $\alpha$ simulated that evolved to $t= 500 \text{ Myr}$ without collapsing.
 		\includegraphics[width=1\linewidth]{figures/radius_cooling_rate_profiles.eps}
 	\end{center}
 	\caption{
-    \label{fig:profiles}
+    \label{fig:phasePlots}
     Phase plots of entropy and cooling rate versus radius of simulations with
     spherical and conic AGN heating with radial exponents $\alpha=2.2$ and
     $\alpha=2.8$ as labeled, with the initial and current median entropy or
     cooling rate versus radius in dashed blue and solid black respectively. The
     total heating rate in a shell versus radius is superimposed on the cooling
     rate in solid red, which is scaled in the simulation to match in total
-    cooling rate.  The upper plots are at $t= 500 \text{ Myr}$
-    and the lower plots are at the final time step of the simulation.
-    \FG{Should I include the final step? Maybe more a time sequence through
-    collapse of one simulation? Combine r axes. Also, maybe a radial profile of
-    cold gas to see where it forms}}
+    cooling rate.  The upper plots are at $t= 500 \text{ Myr}$ and the lower
+    plots are at the final time step of the simulation.
+    %\FG{Should I include the final step? Maybe more a time sequence through
+    %collapse of one simulation? Combine r axes. Also, maybe a radial profile
+    %of cold gas to see where it forms}
+  }
 \end{figure*}
 
 \subsection{Phase Plots}
 \label{sec:phase_plots}
 
-Fig. \ref{fig:profiles} shows phase plots of entropy and the cooling rate
+Fig. \ref{fig:phasePlots} shows phase plots of entropy and the cooling rate
 versus radius. As expected, at $t= 500 \text{ Myr}$ the higher $\alpha=2.8$ run
 has a higher core entropy than $\alpha=2.2$ since more energy is deposited in
 the center. The median entropy profile still follows the initial median but
@@ -610,10 +611,11 @@ cold gas near their cores as they collapsed before hydrodynamic errors stopped
 the simulations.  The heating rate is also plotted with the median cooling in
 the cooling rate phase diagram. For certain values of $\alpha$, heating exceeds
 cooling in the inner core and outer radii but not in the intermediate range
-where the entropy profile changes from a flat line to a power law. \FG{This
-would make more sense with volume averaged cooling rate instead of the median -
-that's what should be directly compared.} However, this criterion was not
+where the entropy profile changes from a flat line to a power law. 
+However, this criterion was not
 enough to produce thermally stable clusters.
+%\FG{This would make more sense with volume averaged cooling rate instead of
+%the median - that's what should be directly compared.} 
 
 
 \begin{comment}
@@ -669,7 +671,7 @@ Comparing to previous work in \citep{gaspari_agn_2011,meece_triggering_2017},
 this current work reaffirms the necessity of kinetic outflows, or at least some
 mechanism beyond thermal heating, to push cold clumps of gas out of the
 isentropic zone and into the power-law entropy zone where their condensation
-may be supressed.
+may be suppressed.
 
 The contrived direct coupling of the AGN feedback to the total cooling rate of
 the cluster also led to simulation issues when compared to Bondi accretion and
@@ -708,7 +710,7 @@ brightness profiles from the ACCEPT dataset \cite{cavagnolo_intracluster_2009}.
     volume-weighted density. Entropy profiles
     of CC clusters from the ACCEPT dataset are included in the shaded regions,
     with the dashed line denoting the median, the darker region denoting the
-    $68\%$ condidence interval, and the lighter region denoting the extent of
+    $68\%$ confidence interval, and the lighter region denoting the extent of
     the CC clusters in the dataset. Entropy profiles from the ACCEPT dataset
     were generated from the $K = K_0 + K_{100} \left ( r/100 \text{ kpc}
     \right )^{\alpha_k}$ fits from the dataset. Only CC clusters defined by $K_0
@@ -734,7 +736,7 @@ dataset, as well show surface brightness profiles. Entropy profiles from the
 simulations were calculated using the mass-weighted temperature and the
 volume-weighted density, following \citep{}. Confidence intervals of entropy
 profiles from the ACCEPT data were generated using the $K = K_0 + K_{100} \left
-( r/100 \text{ kpc} \right )^{\alpha_k}$ fits. Only CC core clusters are
+( r/100 \text{ kpc} \right )^{\alpha_k}$ fits. Only CC clusters are
 considered, defined here as having $K_0 < 30 \text{ keV cm}^2$. Simulation data
 was examined at $t = 500 \text{ Myr}$, although it should be noted that this is
 an arbitrary time step. As the higher $\alpha$ simulations drop in core
@@ -745,7 +747,7 @@ outside the ACCEPT dataset, which may affect comparisons.
 The simulation data with purely thermal feedback shows peaked entropy profiles
 towards the core, inherently in contrast to the power-law profiles generated
 from the ACCEPT dataset. The difference is largest for high $\alpha$, given
-their centralized feedback. These may be ruled out as an unphysical for
+their centralized feedback. These may be ruled out as unphysical for
 simplified models of purely thermal AGN feedback.  The lower $\alpha$
 simulations may have more acceptable profiles, although even with a small peak
 in entropy they quickly collapse.
@@ -826,8 +828,8 @@ We have presented simulation results for simplified models of AGN feedback
 using purely thermal feedback following a radial power law, $\dot e \propto
 r^{-\alpha}$ dependence, where the total feedback is scaled to the total
 cooling within the clusters. All cases of this setup failed to maintain thermal
-stability with observationally reasonable entropy profiles (figs.
-\ref{fig:avgCoreEntropies} \ref{fig:profiles}. The purely thermal feedback was unable
+stability with observationally reasonable entropy profiles (see figs.
+\ref{fig:avgCoreEntropies},\ref{fig:phasePlots}.) The purely thermal feedback was unable
 to suppress the formation of a large cold clump of gas while the increased
 cooling rate through this process raised the heating rate to very high levels.
 
@@ -838,19 +840,17 @@ entropy peaks were more pronounced for higher values of $\alpha$ due to the
 more centralized feedback. Simplified AGN models with centralized thermal
 heating are unlikely to produce realistic entropy profiles.
 
-A few possible conclusions are as follows:
-\begin{itemize}
-  \item Highly centralized feedback produces unreasonable high entropy profiles
-    compared to observations. These can a eliminated from simplified models of
-    AGN feedback.
-  \item An AGN heating rate directly tied cooling rate led to a sharp jump in
-    feedback as cold gas formed in the simulation. This differs from previous
-    simulations approximating feedback rates using Bondi and cold gas accretion
-    models, which can temper the feedback.
-  \item No configuration of purely thermal feedback explored here achieved
-    thermal stability nor prevented a run away collapse into a cold clump, in
-    contrast to previous simulations included kinetic jets.
-\end{itemize}
+A few possible conclusions can be made from this work. Highly centralized
+feedback produces unreasonable high entropy profiles compared to observations.
+These can a eliminated from simplified models of AGN feedback.  An AGN heating
+rate directly tied cooling rate led to a sharp jump in feedback as cold gas
+formed in the simulation. This differs from previous simulations approximating
+feedback rates using Bondi and cold gas accretion models, which can temper the
+feedback.  No configuration of purely thermal feedback explored here achieved
+thermal stability nor prevented a run away collapse into a cold clump, in
+contrast to previous simulations included kinetic jets. However, a purely
+thermal model for AGN feedback may still exist that can produce realistic CC
+clusters, although more constraints on the heating will be necessary.
 
 \begin{comment}
 Although this is a very simplified model of cluster feedback, it can be used to
